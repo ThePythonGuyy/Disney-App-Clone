@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setSignOutState,
   setUserLoingDetails,
-} from "../app/features/userSlice";
+} from "../app/features/user/userSlice";
 
 function Header() {
   const userName = useSelector((state) => state.user.name);
