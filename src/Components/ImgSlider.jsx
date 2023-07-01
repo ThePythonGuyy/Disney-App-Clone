@@ -12,7 +12,7 @@ const ImgSlider = (props) => {
     speed: 900,
     slidesToShow: 1,
     slidesToScroll:1,
-    // autoplay: true,
+    autoplay: true,
   }
   return (
     <ImgSliderC {...settings}>

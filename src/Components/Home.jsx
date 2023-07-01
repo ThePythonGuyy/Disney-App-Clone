@@ -18,15 +18,27 @@ const Home = (props) => {
   const userName = useSelector((state) => state.user.name);
   const [userEmail] = useOutletContext();
   const navigate = useNavigate();
-  // const movies = useSelector((state) => state.movie.recommended);
+  
   let recommended = [];
   let newOnDisney = [];
   let original = [];
   let trending = [];
 
   useEffect(() => {
+    if (!userEmail) {
+      // navigate("/");
+    }
+  }, []);
+
+  const fetchState = () => {
+    // const movies = useSelector((state) => state.movie.recommended);
+    // console.log(movies)
+    return null
+  }
+
+  useEffect(() => {
     
-    // if (!movies){
+    if (!fetchState()){
     console.log('UseEffect')
     const movieSel = collection(db, "movies");
 
@@ -36,7 +48,9 @@ const Home = (props) => {
         switch (doc.data().type) {
           case "recommended":
             // recommended.push({ id: doc.id, ...doc.data() });
+            
             recommended = [...recommended, { id: doc.id, ...doc.data() }];
+            
             // console.log(recommended);
             break;
 
@@ -62,7 +76,7 @@ const Home = (props) => {
             console.log(null);
         }
       });
-
+      
       dispatch(
         setMovies({
           recommended,
@@ -72,17 +86,13 @@ const Home = (props) => {
         })
       );
     });
-  // }
-  }, [userName]);
+  }
+  }, [userEmail]);
 
   useEffect(() => {}, [newOnDisney]);
 
-  //Navigation
-  // useEffect(() => {
-  //   if (!userEmail) {
-  //     navigate("/");
-  //   }
-  // }, []);
+  // Navigation
+
 
   return (
     <HomeC>
